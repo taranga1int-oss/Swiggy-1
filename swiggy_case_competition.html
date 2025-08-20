@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiggy Food Innovation Challenge 2025</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FF3068 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            transform: translateY(-2px);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: white;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 20s infinite linear;
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) translateY(-50%) rotate(360deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            animation: slideInUp 1s ease-out;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+        
+        .hero .description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+        
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #FF6B35;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: #FF6B35;
+            transform: translateY(-3px);
+        }
+        
+        /* Process Section */
+        .process {
+            padding: 80px 0;
+            background: white;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B35, #F7931E);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B35, #F7931E, #FF3068);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .step:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .step h3 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .step p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Prizes Section */
+        .prizes {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .prizes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .prize-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .prize-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .prize-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .prize-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .prize-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+        
+        /* Registration Section */
+        .registration {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .reg-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: #FF6B35;
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 50px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #FF6B35;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+        
+        .footer-section a:hover {
+            color: #FF6B35;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 20px;
+            text-align: center;
+            color: #999;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .reg-form {
+                padding: 30px 20px;
+            }
+        }
+        
+        /* Animations */
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">🍜 Swiggy Challenge</div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#prizes">Prizes</a></li>
+                    <li><a href="#register">Register</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>🚀 Food Innovation Challenge 2025</h1>
+                <p class="subtitle">Reimagine the Future of Food Delivery in India</p>
+                <p class="description">
+                    Are you ready to solve the biggest challenges in food delivery? Join India's most exciting case competition where your ideas can transform how millions order food. Identify problems, propose solutions, and win amazing prizes including PPI opportunities at Swiggy!
+                </p>
+                <div class="cta-buttons">
+                    <a href="#register" class="btn btn-primary">Register Now 🎯</a>
+                    <a href="#process" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="process">
+        <div class="container">
+            <h2 class="section-title fade-in">How It Works 🎪</h2>
+            <div class="process-steps">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>🔍 Identify Problems</h3>
+                    <p>Spot real challenges in India's food delivery ecosystem. Think college campuses, delivery logistics, customer experience, or sustainability issues.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>📝 Submit Your Problem</h3>
+                    <p>Present your problem statement with research, data, and insights. Make it compelling and solution-worthy!</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>🏆 Top 5 Selection</h3>
+                    <p>Our expert jury selects the 5 most impactful problems that deserve innovative solutions.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>💡 Solve & Compete</h3>
+                    <p>Develop comprehensive solutions for the selected problems and present them in the final competition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prizes" class="prizes">
+        <div class="container">
+            <h2 class="section-title fade-in">Amazing Rewards Await 🎁</h2>
+            <div class="prizes-grid">
+                <div class="prize-card fade-in">
+                    <div class="prize-icon">🥇</div>
+                    <h3>Winner</h3>
+                    <div class="prize-amount">₹1,00,000</div>
+                    <p>+ PPI at Swiggy + Mentorship</p>
+                </div>
+                <div class="prize-card fade-in">
+                    <div class="prize-icon">🥈</div>
+                    <h3>Runner-up</h3>
+                    <div class="prize-amount">₹50,000</div>
+                    <p>+ PPI at Swiggy + Industry Connect</p>
+                </div>
+                <div class="prize-card fade-in">
+                    <div class="prize-icon">🥉</div>
+                    <h3>Third Place</h3>
+                    <div class="prize-amount">₹25,000</div>
+                    <p>+ Certificate + Swiggy Goodies</p>
+                </div>
+                <div class="prize-card fade-in">
+                    <div class="prize-icon">🎯</div>
+                    <h3>Special Recognition</h3>
+                    <div class="prize-amount">₹10,000</div>
+                    <p>+ Internship Opportunities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="register" class="registration">
+        <div class="container">
+            <h2 class="section-title fade-in">Join the Revolution 🌟</h2>
+            <div class="reg-form fade-in">
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="teamName">Team Name *</label>
+                        <input type="text" id="teamName" name="teamName" required placeholder="Enter your team name">
+                    </div>
+                    <div class="form-group">
+                        <label for="leaderName">Team Leader Name *</label>
+                        <input type="text" id="leaderName" name="leaderName" required placeholder="Enter team leader name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter email address">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="Enter phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="college">College/University *</label>
+                        <input type="text" id="college" name="college" required placeholder="Enter your college name">
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Year of Study *</label>
+                        <select id="year" name="year" required>
+                            <option value="">Select year</option>
+                            <option value="1st">1st Year</option>
+                            <option value="2nd">2nd Year</option>
+                            <option value="3rd">3rd Year</option>
+                            <option value="4th">4th Year</option>
+                            <option value="postgrad">Post Graduate</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="teamSize">Team Size *</label>
+                        <select id="teamSize" name="teamSize" required>
+                            <option value="">Select team size</option>
+                            <option value="1">Solo (1 member)</option>
+                            <option value="2">2 members</option>
+                            <option value="3">3 members</option>
+                            <option value="4">4 members (max)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="problem">Initial Problem Idea (Optional)</label>
+                        <textarea id="problem" name="problem" rows="4" placeholder="Briefly describe a food delivery problem you'd like to tackle..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">
+                        Register Team 🚀
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p>📧 challenge@swiggy.in</p>
+                    <p>📱 +91 98765 43210</p>
+                    <p>🏢 Swiggy HQ, Bangalore</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Important Dates</h4>
+                    <p>Registration: Till March 15, 2025</p>
+                    <p>Problem Submission: March 30, 2025</p>
+                    <p>Top 5 Announcement: April 5, 2025</p>
+                    <p>Final Presentation: April 20, 2025</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <a href="#">🔗 LinkedIn</a><br>
+                    <a href="#">📘 Facebook</a><br>
+                    <a href="#">📷 Instagram</a><br>
+                    <a href="#">🐦 Twitter</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Swiggy Food Innovation Challenge. All rights reserved. Made with ❤️ for Gen Z innovators!</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 107, 53, 0.95)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+
+        // Form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.teamName || !data.leaderName || !data.email || !data.phone || !data.college || !data.year || !data.teamSize) {
+                alert('Please fill in all required fields!');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                alert('Please enter a valid email address!');
+                return;
+            }
+            
+            // Phone validation (basic)
+            const phoneRegex = /^[0-9]{10}$/;
+            if (!phoneRegex.test(data.phone.replace(/\D/g, '').slice(-10))) {
+                alert('Please enter a valid 10-digit phone number!');
+                return;
+            }
+            
+            // Show success message
+            alert(`🎉 Registration Successful!\n\nTeam: ${data.teamName}\nLeader: ${data.leaderName}\nCollege: ${data.college}\n\nWe'll contact you soon with further details. Good luck with your innovation journey!`);
+            
+            // Reset form
+            this.reset();
+            
+            // In a real application, you would send this data to a server
+            console.log('Registration data:', data);
+        });
+
+        // Add some interactive animations
+        document.querySelectorAll('.step').forEach((step, index) => {
+            step.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            step.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Prize card animations
+        document.querySelectorAll('.prize-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) rotateY(5deg)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateY(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>
